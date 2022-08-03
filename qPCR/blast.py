@@ -5,13 +5,21 @@ specificity of these sequences by blastn algorithm.
 
 Author: Enrico Giovanelli Tacconi Gimenez
 e-mail: gimenezenrico@yahoo.com.br
+<<<<<<< HEAD
 Requisites: blast+; python3; taxdb in the same folder you run this code
+=======
+Requisites: blast+; python3; taxdb
+>>>>>>> e3de1402f095cce7d7ceda312f0113c97556103a
 '''
 from sys import stderr, stdout
 from Bio.Blast.Applications import *
 import pandas as pd
 import argparse
+<<<<<<< HEAD
 # import os
+=======
+
+>>>>>>> e3de1402f095cce7d7ceda312f0113c97556103a
 
 print("*"*10 + "\n" +
       "WELCOME TO CHECK PRIMERS SOFTWARE. IT CHECKS PRIMERS WITH BLAST!\n"+"*"*10)
