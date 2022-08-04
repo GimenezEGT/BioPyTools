@@ -11,9 +11,10 @@ from sys import stderr, stdout
 from Bio.Blast.Applications import *
 import pandas as pd
 import argparse
+import putHeader
 
-print("*"*10 + "\n" +
-      "WELCOME TO CHECK PRIMERS SOFTWARE. IT CHECKS PRIMERS WITH BLAST!\n"+"*"*10)
+print("*"*100 + "\n" +
+      "WELCOME TO CHECK PRIMERS SOFTWARE. IT CHECKS PRIMERS WITH BLAST!\n"+"*"*100+"\n\n")
 parser = argparse.ArgumentParser(
     description="Checks your primers specificity with BLASTn.")
 parser.add_argument("query", help="Type the path to your query file.")
@@ -31,9 +32,10 @@ print("Running BLASTn: {}\n".format(comando_blastn))
 stdout, stderr = comando_blastn()
 
 blast_result = open("{}.tsv".format(args.output_name), "r")
-print("If there is any error, it will appear below:\n")
+print("If there is any error, it will appear below:\n\n")
 print(stderr)
 
+putHeader()
 lines = blast_result.read()
 print("BLASTn results achieved! Check {}.tsv.".format(args.output_name))
-print("*"*50, "\n Thank you for using this software! Feel free to share!\n", "*"*50)
+print("*"*100, "\n Thank you for using this software! Feel free to share!\n", "*"*100)
