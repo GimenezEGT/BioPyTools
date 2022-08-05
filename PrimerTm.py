@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-#!/usr/bin/python
+#!/usr/bin/python3
 
 from Bio.SeqUtils import MeltingTemp as tm
 from Bio.Seq import Seq
@@ -8,9 +8,9 @@ import numpy as np
 
 
 def getTm(archive):
-    with open(archive, "r"):
+    with open(archive, "r") as file:
         # Open file and determine dataframe
-        df = pd.read_csv(archive, delimiter="\t", header=0)
+        df = pd.read_csv(file, delimiter="\t", header=0)
         print(df.columns)
         qseq = df[['qseq']]
         print('Sequences achieved!')
@@ -24,6 +24,6 @@ def getTm(archive):
                              Mg=1.5, Tris=10, dnac1=500, dNTPs=0.8, Na=65))
         df['tm'] = np.resize(Tm_values, len(df))
         print(df)
-
+        
 
 getTm('./example_data.tsv')
