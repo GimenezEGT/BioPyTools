@@ -7,7 +7,7 @@ from Bio.SeqRecord import SeqRecord
 import argparse
 
 parser = argparse.ArgumentParser(
-    description="Checks your primers specificity with BLASTn.")
+    description="Extracts protein CDS from gb file.")
 parser.add_argument("file_name", help="Type the path to your gb file.")
 parser.add_argument(
     "output_name", help="Type the prefix of the out file (the out file is a .faa file", type=str)
@@ -33,7 +33,7 @@ for seq_feature in gb_feature:
     if seq_feature.type == "source":
         organism = str(seq_feature.qualifiers['organism'][0]).rsplit(" ", 1)[0]
         strain = seq_feature.qualifiers['strain'][0]
-        #chromosome = seq_feature.qualifiers['chromosome'][0]
+        # chromosome = seq_feature.qualifiers['chromosome'][0]
 
 
 for seq_feature in gb_feature:
@@ -85,15 +85,9 @@ for seq_feature in gb_feature:
                 pippo = SeqRecord(
                     Seq(seq_feature.qualifiers['translation'][0]),
 
-                    id=seq_feature.qualifiers['locus_tag'][0],
+                    id=f'lcl|{accession}_prot_{protein_id}',
 
-                    description=('|'+str(old_locus_tag)+'|'+str(gene)+'|'+str(product)
-                                 + '|'+str(complement)+'|'+str(protein_id) + '|' +
-                                 #                                 '|Chromosome-'+str(chromosome)
-                                 str(accession).strip("[]").replace(
-                                     "'", "")+'|'+str(organism)
-                                 + '|'+str(strain))
-                )
+                    description=f'[gene={gene}][locus_tag={locus_tag}[protein={product}] [gbkey=CDS]')
                 all_entries.append(pippo)
 
 # print(all_entries)
