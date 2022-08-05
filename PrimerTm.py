@@ -1,5 +1,5 @@
-# -*- coding: UTF-8 -*-
-#!/usr/bin/python3
+#!/usr/bin/python3.8
+#-*- coding: UTF-8 -*-
 
 from Bio.SeqUtils import MeltingTemp as tm
 from Bio.Seq import Seq
@@ -11,7 +11,6 @@ def getTm(archive):
     with open(archive, "r") as file:
         # Open file and determine dataframe
         df = pd.read_csv(file, delimiter="\t", header=0)
-        print(df.columns)
         # qseq = df[['qseq']]
         print('Sequences achieved!')
         Tm_values = list()
@@ -34,7 +33,7 @@ def getTm(archive):
             tm_annealing = row['tm']
             diference = tm_primer - tm_annealing
             tm_diference.append(diference)
-            if diference > 5 or diference < (-5):
+         #   if diference > 5 or diference < (-5):
 
                 # Overwrite file with Tm's
                 # with open(archive, 'w') as writable:
