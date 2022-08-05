@@ -8,7 +8,7 @@ import numpy as np
 
 
 def getTm(archive):
-    with open(archive, "r") as file:
+    with open(archive, "w") as file:
         # Open file and determine dataframe
         df = pd.read_csv(file, delimiter="\t", header=0)
         print(df.columns)
@@ -24,6 +24,6 @@ def getTm(archive):
                              Mg=1.5, Tris=10, dnac1=500, dNTPs=0.8, Na=65))
         df['tm'] = np.resize(Tm_values, len(df))
         print(df)
-        
+        file.write(df)
 
 getTm('./example_data.tsv')
