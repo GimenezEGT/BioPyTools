@@ -14,6 +14,7 @@ def getTm(archive):
         # qseq = df[['qseq']]
         print('Sequences achieved!')
         Tm_values = list()
+        aneal = list() # Stores values for if the qseq hav a Tm very diferent from the primer tm. False not anel; True aneal
 
         # Get sequences that anealed with your primers and put them into a Seq data type,
         # so Biopython can calculate Tm.
@@ -33,7 +34,12 @@ def getTm(archive):
             tm_annealing = row['tm']
             diference = tm_primer - tm_annealing
             tm_diference.append(diference)
-         #   if diference > 5 or diference < (-5):
+            
+            if diference > 6 or diference < (-6):
+                aneal.append(False)
+            else:
+                aneal.append(True)
+        df['same_tm'] = np.resize(aneal, len(df))
 
                 # Overwrite file with Tm's
                 # with open(archive, 'w') as writable:
