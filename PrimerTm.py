@@ -28,7 +28,7 @@ def getTm(archive):
         # Calculating diference between annealings and primer Tm
         tm_diference = []
         tm_primer = df['tm'][0]
-        
+
         print(f'Your primer has a melting temperature of {tm_primer}ºC')
         for index, row in df[['tm']].iterrows():
             tm_annealing = row['tm']
@@ -36,9 +36,9 @@ def getTm(archive):
             tm_diference.append(diference)
             if diference > 5 or diference < (-5):
 
-        # Overwrite file with Tm's 
-        # with open(archive, 'w') as writable:
-        #     df.to_csv(writable,sep="\t", encoding='utf-8')
-        
+                # Overwrite file with Tm's
+                # with open(archive, 'w') as writable:
+                #     df.to_csv(writable,sep="\t", encoding='utf-8')
+
 
 getTm('./example_data.tsv')
