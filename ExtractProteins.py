@@ -1,6 +1,8 @@
 #! /usr/bin/python3.8
 # -*-coding: utf-8 -*-
 
+#Este script foi utilizado para extrair os CDSs do GenBank file (full) das sequências NC_018019.1 e NC_018019.2, pois o NCBI não disponibiliza arquivos fasta de CDS de seuquências de versões antigas de um genoma 
+
 from Bio import SeqIO
 from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
