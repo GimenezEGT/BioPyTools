@@ -1,17 +1,15 @@
 #!/usr/bin/python3.8
 '''
-Simple blast
+Simple blast. Returns a tsv file with main information about your hits.
 
 Author: Enrico Giovanelli Tacconi Gimenez
 e-mail: gimenezenrico@yahoo.com.br
 Requisites: blast+; python3; taxdb in the same folder you run this code
 '''
-
 from qPCR.putHeader import putHeader
 import argparse
 from sys import stderr, stdout
 from Bio.Blast.Applications import NcbiblastnCommandline
-import os
 parser = argparse.ArgumentParser(
     description="Checks your primers specificity with BLASTn.")
 parser.add_argument("query", help="Type the path to your query file.")
@@ -34,6 +32,7 @@ print(stderr)
 putHeader(blast_result)
 with open(f'./{blast_result}', 'r') as saida:
     lines = saida.read()
-print(lines)
-print("BLASTn results achieved! Check {}.tsv.".format(args.output_name))
-print("*"*100, "\n Thank you for using this software! Feel free to share!\n", "*"*100)
+
+print("BLASTn results achieved! Check {}.tsv.\n".format(args.output_name))
+print("*"*100, "\n Thank you for using this software! Feel free to share!\n",
+      "*"*100)
