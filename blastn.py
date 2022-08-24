@@ -20,7 +20,8 @@ parser.add_argument(
 
 args = parser.parse_args()
 
-comando_blastn = NcbiblastnCommandline(query=args.query, db="nt", outfmt='6 qseqid sscinames qcovs pident evalue staxids qseq sblastnames salltitles stitle',
+comando_blastn = NcbiblastnCommandline(query=args.query, db="nt",
+                                       outfmt='6 qseqid sscinames qcovs pident evalue staxids qseq sblastnames salltitles stitle',
                                        out=args.output_name+".tsv", num_alignments=args.num_alignments, remote=True)
 print("Running BLASTn: {}\n".format(comando_blastn))
 
@@ -33,6 +34,6 @@ putHeader(blast_result)
 with open(f'./{blast_result}', 'r') as saida:
     lines = saida.read()
 
-print("BLASTn results achieved! Check {}.tsv.\n".format(args.output_name))
+print(f'BLASTn results achieved! Check {args.output_name}.tsv.\n')
 print("*"*100, "\n Thank you for using this software! Feel free to share!\n",
       "*"*100)

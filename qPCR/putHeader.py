@@ -1,4 +1,4 @@
-#!/usr/bin/python3.8
+#!/usr/bin/python3
 # *-* coding: utf-8 -*-
 # Add header on the first line of the result from blast.py
 def putHeader(file):
