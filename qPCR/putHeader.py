@@ -5,7 +5,7 @@ def putHeader(file):
     with open(file, 'r') as input_file:
         line = 0
         header = (
-            'qseqid   sscinames   qcovs   pident  evalue  staxids qseq  sblastnames salltitles  stitle')
+            'qseqid\tsscinames\tqcovs\tpident\tevalue\tstaxids\tqseq\tsblastnames\tsalltitles\tstitle')
         lines = input_file.readlines()
         lines.insert(line, header + "\n")
     with open(file, "w") as output_file:
