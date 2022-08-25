@@ -10,3 +10,7 @@ def putHeader(file):
         lines.insert(line, header + "\n")
     with open(file, "w") as output_file:
         output_file.writelines(lines)
+
+
+if __name__ == "-_main__":
+    putHeader("./*")
