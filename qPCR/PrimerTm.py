@@ -1,5 +1,8 @@
-#!/usr/bin/python3.8
+#!/usr/bin/python3
 # -*- coding: UTF-8 -*-
+
+# This script defines a Tm of your primer and the annealings returned from blastn, compares and say to you if the difference between your primer and the annealing returned isd more than 6ºC.
+# This way you can choose the best set of primers based on Tm of the returned species
 
 from Bio.SeqUtils import MeltingTemp as tm
 from Bio.Seq import Seq
@@ -15,7 +18,7 @@ def getTm(archive):
         print('Sequences achieved!')
         Tm_values = list()
         aneal = list()  # Stores values for if the qseq hav a Tm very diferent from the primer tm. False not anel; True aneal
-
+        print(df['qseq'])
         # Get sequences that anealed with your primers and put them into a Seq data type,
         # so Biopython can calculate Tm.
         for index, row in df[['qseq']].iterrows():
@@ -45,3 +48,6 @@ def getTm(archive):
         # Overwrite file with Tm's
         with open(archive, 'w') as writable:
             df.to_csv(writable, sep="\t", encoding='utf-8')
+
+
+getTm("./example_data.tsv")
