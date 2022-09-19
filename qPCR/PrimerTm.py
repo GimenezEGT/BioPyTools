@@ -101,5 +101,3 @@ def checkSpecSens(file):
             f"""\n{total} sequences analysed.\nFalse positives: {false_positive}\nFalse negatives: {false_negative}\nPositives: {true_positive}\nNegatives: {true_negative}""")
     print(f"See your results in {outfile.name}")
 
-
-checkSpecSens("./teste1.tsv")
