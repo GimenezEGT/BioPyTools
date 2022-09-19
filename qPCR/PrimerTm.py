@@ -50,4 +50,56 @@ def getTm(archive):
             df.to_csv(writable, sep="\t", encoding='utf-8')
 
 
-getTm("./example_data.tsv")
+def checkSpecSens(file):
+    df = pd.read_csv(file, delimiter="\t", header=0)
+    # target_taxid = df['staxids'][0]
+    target_ssciname = (df['sscinames'][0].split(
+    )[0] + df['sscinames'][0].split()[1]).lower()
+    print(target_ssciname)
+    false_positive, false_negative, true_positive, true_negative, total_true, total_false = 0, 0, 0, 0, 0, 0.000001
+    species_false_positive, species_false_negative = [], []
+
+    for index, row in df[['sscinames']].iterrows():
+        if df['same_tm'][index] == True:
+            total_true += 1
+        else:
+            total_false += 1
+        try:
+            if str(row['sscinames'].split()[0]+row['sscinames'].split()[1]).lower() not in target_ssciname and df['same_tm'][index] == True:
+                false_positive += 1  # contar linhas nesta condição, dizer quais as espécies que pega
+                species_false_positive.append(row['sscinames'])
+            elif str(row['sscinames'].split()[0]+row['sscinames'].split()[1]).lower() not in target_ssciname and df['same_tm'][index] == False:
+                true_negative += 1  # contar linhas nesta condição
+            elif str(row['sscinames'].split()[0]+row['sscinames'].split()[1]).lower() in target_ssciname and df['same_tm'][index] == True:
+                true_positive += 1  # contar linhas nesta condição, dizer quais as espécies que pega
+            elif str(row['sscinames'].split()[0]+row['sscinames'].split()[1]).lower() in target_ssciname and df['same_tm'][index] == False:
+                false_negative += 1  # contar linhas nesta condição, dizer quais as espécies que pega
+                species_false_negative.append(row['sscinames'])
+        except pd.errors as e:
+            print(f'Error: {e}')
+
+    total = false_negative + false_positive + true_negative + true_positive
+    print(
+        f"Falsos positivos: {false_positive}\nFalsos negativos: {false_negative}\nPositivos: {true_positive}\nNegativos: {true_negative}")
+    print(
+        f"Falsos positivos: {species_false_positive}\nFalsos negativos: {species_false_negative}")
+
+    with open(f"report_{target_ssciname}.tsv", "w") as outfile:
+        outfile.write("False positives:\n")
+        for i in species_false_positive:
+            outfile.writelines(f"{i}\n")
+        outfile.write("False Negatives:\n")
+        for i in species_false_negative:
+            outfile.writelines(f"{i}\n")
+        if true_negative > 0:
+            outfile.write("Sensitivity: {:.2f}% \nSpecifivity: {:.2f}% ".format(
+                ((true_positive/total_true)*100), ((true_negative/total_false)*100)))
+        else:
+            outfile.write("Sensitivity: {:.2f}% \nSpecifivity: {}% ".format(((true_positive/total_true)*100),
+                          "100%. No False negatives were found. Maybe you are analysing just a few alignments. Try to use +500 alignments."))
+        outfile.write(
+            f"""\n{total} sequences analysed.\nFalse positives: {false_positive}\nFalse negatives: {false_negative}\nPositives: {true_positive}\nNegatives: {true_negative}""")
+    print(f"See your results in {outfile.name}")
+
+
+checkSpecSens("./teste1.tsv")
