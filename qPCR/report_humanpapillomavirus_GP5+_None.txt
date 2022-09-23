@@ -1,0 +1,13 @@
+False positives:
+Alphapapillomavirus 9
+Alphapapillomavirus 9
+Alphapapillomavirus 9
+Alphapapillomavirus 9
+False Negatives:
+Sensitivity: 96.00% 
+Specifivity: 100%. No False negatives were found. Maybe you are analysing just a few alignments. Try to use +500 alignments.% 
+100 sequences analysed.
+False positives: 4
+False negatives: 0
+Positives: 96
+Negatives: 0
