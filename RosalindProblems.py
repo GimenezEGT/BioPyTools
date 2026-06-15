@@ -79,7 +79,7 @@ pm = m/total
 pn = n/total
 
 
-homodom = #probabilidade de ser homozigoto dominante
-heter = #probabilidade de ser heterozigoto
+homodom = None  # probabilidade de ser homozigoto dominante (TODO)
+heter = None  # probabilidade de ser heterozigoto (TODO)
 
 p = '?' # probabilidade que um atch de dois individuos resulte num individuo que possua um alelo dominante

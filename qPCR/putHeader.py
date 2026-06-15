@@ -12,5 +12,8 @@ def putHeader(file):
         output_file.writelines(lines)
 
 
-if __name__ == "-_main__":
-    putHeader("./*")
+if __name__ == "__main__":
+    import sys
+    if len(sys.argv) != 2:
+        sys.exit("Usage: putHeader.py <blast_result.tsv>")
+    putHeader(sys.argv[1])
