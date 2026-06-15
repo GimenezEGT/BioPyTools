@@ -1,0 +1,23 @@
+# Python build artifacts
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# Archives / snapshots
+*.zip
+
+# BLAST / pipeline generated outputs
+*.asn
+report_*.tsv
+report_*.txt
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+
+# Local tool state / temp
+.omc/
+.claude/settings.local.json
+.specify_init.log
