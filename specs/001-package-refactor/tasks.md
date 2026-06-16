@@ -84,16 +84,16 @@ each runs to completion from args with no prompt; README lists all tools.
 
 ### Implementation for User Story 2
 
-- [ ] T016 [P] [US2] `git mv blastn.py biopytools/blast/blastn.py`; keep argparse, use `common.blast` outfmt/header, drop the dead result read (per `contracts/cli-blast.md`)
-- [ ] T017 [P] [US2] `git mv blastp.py biopytools/blast/blastp.py`; add argparse, remove `import *`, remove full-file stdout dump
-- [ ] T018 [P] [US2] `git mv AcessionNumbers.py biopytools/fasta_tools/accession_numbers.py`; replace `input()` with argparse `INPUT_FASTA -o OUTPUT_TXT`
-- [ ] T019 [P] [US2] `git mv Exclue_multispecies.py biopytools/fasta_tools/exclude_multispecies.py`; replace `input()` with argparse (keep context-manager fix)
-- [ ] T020 [P] [US2] `git mv ExtractFirstSequence.py biopytools/fasta_tools/extract_first_sequence.py`; argparse `DIRECTORY`, filter by FASTA extension, skip own output/non-files, guard empty parses (FR-007)
-- [ ] T021 [P] [US2] `git mv ExtractProteins.py biopytools/fasta_tools/extract_proteins.py`; guard optional `strain`/`organism` qualifiers, fix `[k=v]` bracket (FR-016)
-- [ ] T022 [P] [US2] `git mv qPCR/fasta_handler.py biopytools/fasta_tools/fasta_handler.py`; honor the path argument (remove internal `input()`), add `--out-dir`, sanitize record-id filenames (FR-004, FR-008)
-- [ ] T023 [P] [US2] `git mv removeAspas.py biopytools/text_tools/remove_quotes.py`; argparse `INPUT [--in-place | -o OUTPUT]`, drop per-line stdout
-- [ ] T024 [US2] Replace `qPCR/run.sh` batch wrapper to invoke `python -m biopytools.qpcr run` per file (already de-bugged; relocate alongside package or `examples/`)
-- [ ] T025 [US2] Expand `README.md` into a full tool index: one line + example invocation per tool (SC-004)
+- [x] T016 [P] [US2] `git mv blastn.py biopytools/blast/blastn.py`; keep argparse, use `common.blast` outfmt/header, drop the dead result read (per `contracts/cli-blast.md`)
+- [x] T017 [P] [US2] `git mv blastp.py biopytools/blast/blastp.py`; add argparse, remove `import *`, remove full-file stdout dump
+- [x] T018 [P] [US2] `git mv AcessionNumbers.py biopytools/fasta_tools/accession_numbers.py`; replace `input()` with argparse `INPUT_FASTA -o OUTPUT_TXT`
+- [x] T019 [P] [US2] `git mv Exclue_multispecies.py biopytools/fasta_tools/exclude_multispecies.py`; replace `input()` with argparse (keep context-manager fix)
+- [x] T020 [P] [US2] `git mv ExtractFirstSequence.py biopytools/fasta_tools/extract_first_sequence.py`; argparse `DIRECTORY`, filter by FASTA extension, skip own output/non-files, guard empty parses (FR-007)
+- [x] T021 [P] [US2] `git mv ExtractProteins.py biopytools/fasta_tools/extract_proteins.py`; guard optional `strain`/`organism` qualifiers, fix `[k=v]` bracket (FR-016)
+- [x] T022 [P] [US2] `git mv qPCR/fasta_handler.py biopytools/fasta_tools/fasta_handler.py`; honor the path argument (remove internal `input()`), add `--out-dir`, sanitize record-id filenames (FR-004, FR-008)
+- [x] T023 [P] [US2] `git mv removeAspas.py biopytools/text_tools/remove_quotes.py`; argparse `INPUT [--in-place | -o OUTPUT]`, drop per-line stdout
+- [x] T024 [US2] Replace `qPCR/run.sh` batch wrapper to invoke `python -m biopytools.qpcr run` per file (already de-bugged; relocate alongside package or `examples/`)
+- [x] T025 [US2] Expand `README.md` into a full tool index: one line + example invocation per tool (SC-004)
 
 **Checkpoint**: All tools runnable non-interactively and discoverable via README.
 
