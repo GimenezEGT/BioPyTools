@@ -109,9 +109,9 @@ works; README documents BLAST+/taxdb.
 
 ### Implementation for User Story 3
 
-- [ ] T026 [US3] Finalize `console_scripts` entry points in `pyproject.toml` for every CLI (qpcr, blastn, blastp, accessions, exclude-multispecies, extract-first, extract-proteins, fasta-handler, remove-quotes)
-- [ ] T027 [P] [US3] Verify `requirements.txt` completeness (biopython, pandas, numpy, openpyxl, matplotlib, matplotlib-venn) and document BLAST+/taxdb + network needs in README (FR-009)
-- [ ] T028 [US3] In a clean venv, validate `pip install -e .` exposes all console scripts; run `quickstart.md` install steps (SC-005)
+- [x] T026 [US3] Finalize `console_scripts` entry points in `pyproject.toml` for every CLI (qpcr, blastn, blastp, accessions, exclude-multispecies, extract-first, extract-proteins, fasta-handler, remove-quotes)
+- [x] T027 [P] [US3] Verify `requirements.txt` completeness (biopython, pandas, numpy, openpyxl, matplotlib, matplotlib-venn) and document BLAST+/taxdb + network needs in README (FR-009)
+- [x] T028 [US3] In a clean venv, validate `pip install -e .` exposes all console scripts; run `quickstart.md` install steps (SC-005)
 
 **Checkpoint**: Toolkit installs and runs from a documented setup.
 
@@ -126,14 +126,14 @@ separated from maintained tools.
 
 ### Tests for User Story 4 ⚠️
 
-- [ ] T029 [P] [US4] FASTA parse/write/split round-trip tests in `tests/test_fasta.py` (SC-006)
+- [x] T029 [P] [US4] FASTA parse/write/split round-trip tests in `tests/test_fasta.py` (SC-006)
 
 ### Implementation for User Story 4
 
-- [ ] T030 [P] [US4] `git mv` scratch files to `scratch/`: `RosalindProblems.py`→`rosalind_problems.py`, `testes.py`, `Teste_pandas.py`→`teste_pandas.py`, `trasnlate.py` (excluded from packaging via pyproject — FR-013)
-- [ ] T031 [P] [US4] Move sample inputs to `examples/` (`exemplo.fasta`, `primers_example.fasta`, `gcContent.fasta`, `teste.tsv`, `qPCR/exemplo1.tsv`, `HPV11.fasta`); delete empty `qPCR/ExtractSequences.py`
-- [ ] T032 [P] [US4] `git mv DataView/Orthofinder-venn.py biopytools/dataview/orthofinder_venn.py`; mark experimental in docstring (or implement venn) and document status
-- [ ] T033 [US4] Run full `pytest` suite and confirm green (SC-006)
+- [x] T030 [P] [US4] `git mv` scratch files to `scratch/`: `RosalindProblems.py`→`rosalind_problems.py`, `testes.py`, `Teste_pandas.py`→`teste_pandas.py`, `trasnlate.py` (excluded from packaging via pyproject — FR-013)
+- [x] T031 [P] [US4] Move sample inputs to `examples/` (`exemplo.fasta`, `primers_example.fasta`, `gcContent.fasta`, `teste.tsv`, `qPCR/exemplo1.tsv`, `HPV11.fasta`); delete empty `qPCR/ExtractSequences.py`
+- [x] T032 [P] [US4] `git mv DataView/Orthofinder-venn.py biopytools/dataview/orthofinder_venn.py`; mark experimental in docstring (or implement venn) and document status
+- [x] T033 [US4] Run full `pytest` suite and confirm green (SC-006)
 
 **Checkpoint**: Regression safety net in place; repo cleanly organized.
 
