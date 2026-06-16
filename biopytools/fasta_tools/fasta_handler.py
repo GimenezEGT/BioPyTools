@@ -30,7 +30,14 @@ def excel_to_fasta(path, output):
     ``nan`` are skipped.
     """
     df = pd.read_excel(path)
-    df["AssaySet"] = df["AssaySet"].str.replace(" ", "_")
+    required = ["AssaySet", "Type", "Sequence"]
+    missing = [column for column in required if column not in df.columns]
+    if missing:
+        raise ValueError(
+            f"Excel sheet {path} is missing required column(s): "
+            f"{', '.join(missing)}. Expected an IDT PrimerQuest export with "
+            f"columns {required}.")
+    df["AssaySet"] = df["AssaySet"].astype(str).str.replace(" ", "_")
 
     written = 0
     with open(output, "w") as out_handle:

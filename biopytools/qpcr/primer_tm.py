@@ -64,8 +64,13 @@ def getTm(archive, output=None):
 
     # Calculate the Tm of every annealing sequence returned by BLAST.
     tm_values = []
-    for _, row in df.iterrows():
-        seq = Seq(str(row["qseq"]))
+    for position, (_, row) in enumerate(df.iterrows()):
+        raw = str(row["qseq"]).strip()
+        if not raw or raw.lower() == "nan":
+            raise ValueError(
+                f"Row {position} has an empty or missing 'qseq'; cannot compute "
+                f"a melting temperature. Check the BLAST output for {archive}.")
+        seq = Seq(raw)
         tm_values.append(tm.Tm_NN(seq, nn_table=tm.DNA_NN3,
                                   Mg=1.5, Tris=10, dnac1=500, dNTPs=0.8, Na=65))
     # Direct assignment: pandas raises if lengths differ (the failure we want
@@ -96,8 +101,6 @@ class Classification:
     skipped: int = 0
     species_false_positive: List[str] = field(default_factory=list)
     species_false_negative: List[str] = field(default_factory=list)
-    total_true: int = 0
-    total_false: int = 0
 
     @property
     def total(self):
@@ -106,18 +109,36 @@ class Classification:
                 self.false_positive + self.false_negative)
 
     @property
+    def n_target(self):
+        """Target-species rows that were classified (the sensitivity base)."""
+        return self.true_positive + self.false_negative
+
+    @property
+    def n_non_target(self):
+        """Non-target rows that were classified (the specificity base)."""
+        return self.true_negative + self.false_positive
+
+    @property
     def sensitivity(self):
-        """True positives as a percentage of all same-Tm annealings."""
-        if self.total_true == 0:
+        """Classic sensitivity: ``TP / (TP + FN)`` as a percentage.
+
+        Computed only over classified target rows; skipped (one-token) rows do
+        not affect the denominator. Returns ``0.0`` when no target rows exist.
+        """
+        if self.n_target == 0:
             return 0.0
-        return (self.true_positive / self.total_true) * 100
+        return (self.true_positive / self.n_target) * 100
 
     @property
     def specificity(self):
-        """True negatives as a percentage of all different-Tm annealings."""
-        if self.total_false == 0:
+        """Classic specificity: ``TN / (TN + FP)`` as a percentage.
+
+        Computed only over classified non-target rows; skipped rows do not
+        affect the denominator. Returns ``0.0`` when no non-target rows exist.
+        """
+        if self.n_non_target == 0:
             return 0.0
-        return (self.true_negative / self.total_false) * 100
+        return (self.true_negative / self.n_non_target) * 100
 
 
 def classify(df, target=None):
@@ -138,10 +159,6 @@ def classify(df, target=None):
     result = Classification(target=target)
     for _, row in df.iterrows():
         is_match_candidate = bool(row["same_tm"])
-        if is_match_candidate:
-            result.total_true += 1
-        else:
-            result.total_false += 1
 
         row_name = _binomial(row["sscinames"])
         if row_name is None:
@@ -170,13 +187,17 @@ def _format_report(result):
     lines.append("False Negatives:")
     lines += [str(s) for s in result.species_false_negative]
 
-    lines.append(f"Sensitivity: {result.sensitivity:.2f}% ")
-    if result.total_false > 0:
+    if result.n_target > 0:
+        lines.append(f"Sensitivity: {result.sensitivity:.2f}% ")
+    else:
+        lines.append(
+            "Sensitivity: N/A (no target-species alignments were classified).")
+    if result.n_non_target > 0:
         lines.append(f"Specificity: {result.specificity:.2f}% ")
     else:
         lines.append(
-            "Specificity: 100%. No False negatives were found. Maybe you are "
-            "analysing just a few alignments. Try to use +500 alignments.")
+            "Specificity: N/A (no non-target alignments were found). Maybe you "
+            "are analysing just a few alignments. Try to use +500 alignments.")
 
     lines.append("")
     lines.append(f"{result.total} sequences analysed.")

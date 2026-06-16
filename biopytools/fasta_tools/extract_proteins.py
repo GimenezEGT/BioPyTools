@@ -26,8 +26,9 @@ def _qualifier(feature, key, default="not defined"):
 def extract_cds(genbank_path):
     """Return a list of ``SeqRecord`` protein translations from a GenBank file."""
     gb_record = SeqIO.read(genbank_path, "genbank")
-    accession = (gb_record.annotations["accessions"][0] + "." +
-                 str(gb_record.annotations.get("sequence_version", "")))
+    accessions = gb_record.annotations.get("accessions") or ["unknown"]
+    version = gb_record.annotations.get("sequence_version")
+    accession = accessions[0] if version is None else f"{accessions[0]}.{version}"
 
     entries = []
     for feature in gb_record.features:

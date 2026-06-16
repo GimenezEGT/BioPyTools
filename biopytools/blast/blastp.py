@@ -4,7 +4,9 @@ Writes a tab-separated table of the main hit information. Argument-driven and
 non-interactive (FR-004); does not dump the entire result to stdout.
 
 Author: Enrico Giovanelli Tacconi Gimenez (gimenezenrico@yahoo.com.br)
-Requisites: NCBI BLAST+ (``blastp`` on PATH); network access for remote BLAST.
+Requisites: NCBI BLAST+ (``blastp`` on PATH); a local ``taxdb`` (in the working
+directory or referenced from your shell profile) so the ``sscinames`` column
+resolves to scientific names; network access for remote BLAST.
 """
 
 import argparse

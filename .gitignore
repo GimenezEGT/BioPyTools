@@ -12,6 +12,8 @@ dist/
 *.asn
 report_*.tsv
 report_*.txt
+separados/
+qpcr_out/
 
 # OS / editor cruft
 .DS_Store

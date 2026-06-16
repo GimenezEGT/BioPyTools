@@ -55,9 +55,14 @@ Text/TSV summary written by `checkSpecSens` to `report_<slug>.tsv`.
 | false negatives | target species with `same_tm == False` (listed) |
 | true positives | target species with `same_tm == True` (count) |
 | true negatives | non-target species with `same_tm == False` (count) |
-| sensitivity | `true_positive / total_true * 100` |
-| specificity | `true_negative / total_false * 100` |
+| sensitivity | `true_positive / (true_positive + false_negative) * 100` |
+| specificity | `true_negative / (true_negative + false_positive) * 100` |
 | skipped | rows without a two-token species name |
+
+- **Metric rule**: sensitivity and specificity use the classic diagnostic
+  definitions and are computed **only over classified rows**. Skipped (one-token)
+  rows do not contribute to either denominator. When a denominator is zero (no
+  target, or no non-target rows) the metric is reported as `N/A`.
 
 - **Classification rule (FR-001)**: a row is "target" iff its normalized binomial
   **equals** the target binomial (not substring containment).

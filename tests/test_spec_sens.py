@@ -42,6 +42,20 @@ def test_exact_classification_counts(known_df):
     assert result.total == 5
 
 
+def test_sensitivity_specificity_values(known_df):
+    """SC-001: classic diagnostic metrics over classified rows only.
+
+    Skipped (one-token) rows must NOT affect the denominators.
+    sensitivity = TP/(TP+FN) = 1/2 = 50.0%
+    specificity = TN/(TN+FP) = 1/3 = 33.33%
+    """
+    result = primer_tm.classify(known_df)
+    assert result.n_target == 2          # TP + FN, skipped row excluded
+    assert result.n_non_target == 3      # TN + FP
+    assert result.sensitivity == 50.0
+    assert result.specificity == pytest.approx(100 / 3)
+
+
 def test_superstring_is_not_a_target_match(known_df):
     """``Homo sapiensaa`` must NOT count as the target ``homo sapiens``."""
     result = primer_tm.classify(known_df)
