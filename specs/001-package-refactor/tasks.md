@@ -141,10 +141,10 @@ separated from maintained tools.
 
 ## Phase 7: Polish & Cross-Cutting Concerns
 
-- [ ] T034 [P] Add a one-paragraph module docstring (purpose, inputs, outputs, example) to every maintained module that lacks one (FR-005)
-- [ ] T035 [P] Normalize all user-facing text to English (FR-006)
-- [ ] T036 Run `quickstart.md` end-to-end for the non-BLAST paths; confirm `git status` shows no generated outputs/artifacts (SC-007, SC-008)
-- [ ] T037 Update `CLAUDE.md` SPECKIT block and any references to the new module paths
+- [x] T034 [P] Add a one-paragraph module docstring (purpose, inputs, outputs, example) to every maintained module that lacks one (FR-005)
+- [x] T035 [P] Normalize all user-facing text to English (FR-006)
+- [x] T036 Run `quickstart.md` end-to-end for the non-BLAST paths; confirm `git status` shows no generated outputs/artifacts (SC-007, SC-008)
+- [x] T037 Update `CLAUDE.md` SPECKIT block and any references to the new module paths
 
 ---
 
