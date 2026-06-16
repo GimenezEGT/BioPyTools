@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "biopytools"
+version = "0.1.0"
+description = "A small toolkit of bioinformatics command-line utilities (BLAST wrappers, FASTA/GenBank tools, qPCR primer specificity pipeline)."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [
+    { name = "Enrico Giovanelli Tacconi Gimenez", email = "gimenezenrico@yahoo.com.br" },
+]
+dependencies = [
+    "biopython",
+    "pandas",
+    "numpy",
+    "openpyxl",
+    "matplotlib",
+    "matplotlib-venn",
+]
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[project.scripts]
+biopytools-qpcr = "biopytools.qpcr.__main__:main"
+biopytools-blastn = "biopytools.blast.blastn:main"
+biopytools-blastp = "biopytools.blast.blastp:main"
+biopytools-accessions = "biopytools.fasta_tools.accession_numbers:main"
+biopytools-exclude-multispecies = "biopytools.fasta_tools.exclude_multispecies:main"
+biopytools-extract-first = "biopytools.fasta_tools.extract_first_sequence:main"
+biopytools-extract-proteins = "biopytools.fasta_tools.extract_proteins:main"
+biopytools-fasta-handler = "biopytools.fasta_tools.fasta_handler:main"
+biopytools-remove-quotes = "biopytools.text_tools.remove_quotes:main"
+
+[tool.setuptools.packages.find]
+include = ["biopytools*"]
+exclude = ["scratch*", "examples*", "tests*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

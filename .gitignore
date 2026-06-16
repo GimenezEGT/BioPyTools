@@ -12,6 +12,8 @@ dist/
 *.asn
 report_*.tsv
 report_*.txt
+separados/
+qpcr_out/
 
 # OS / editor cruft
 .DS_Store
@@ -21,3 +23,11 @@ Thumbs.db
 .omc/
 .claude/settings.local.json
 .specify_init.log
+
+# Local-only: not published to GitHub (kept on disk)
+.specify/
+.claude/
+specs/
+scratch/
+CLAUDE.md
+code-review_*.md
