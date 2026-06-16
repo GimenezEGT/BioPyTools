@@ -27,10 +27,10 @@ working tree are carried over, not rewritten.
 
 **Purpose**: Create the package skeleton and packaging/test configuration.
 
-- [ ] T001 Create package skeleton with `__init__.py` in `biopytools/`, `biopytools/common/`, `biopytools/blast/`, `biopytools/fasta_tools/`, `biopytools/qpcr/`, `biopytools/text_tools/`, `biopytools/dataview/`
-- [ ] T002 [P] Create top-level `examples/`, `scratch/`, `tests/`, and `tests/fixtures/` directories (with a `.gitkeep` where empty)
-- [ ] T003 [P] Add `pyproject.toml` (setuptools backend, project metadata, Python >=3.9, dependencies from requirements.txt)
-- [ ] T004 [P] Configure pytest in `pyproject.toml` (`[tool.pytest.ini_options]` with `testpaths = ["tests"]`)
+- [x] T001 Create package skeleton with `__init__.py` in `biopytools/`, `biopytools/common/`, `biopytools/blast/`, `biopytools/fasta_tools/`, `biopytools/qpcr/`, `biopytools/text_tools/`, `biopytools/dataview/`
+- [x] T002 [P] Create top-level `examples/`, `scratch/`, `tests/`, and `tests/fixtures/` directories (with a `.gitkeep` where empty)
+- [x] T003 [P] Add `pyproject.toml` (setuptools backend, project metadata, Python >=3.9, dependencies from requirements.txt)
+- [x] T004 [P] Configure pytest in `pyproject.toml` (`[tool.pytest.ini_options]` with `testpaths = ["tests"]`)
 
 ---
 
@@ -40,9 +40,9 @@ working tree are carried over, not rewritten.
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete.
 
-- [ ] T005 Implement the BLAST output-format field list, the `-outfmt '6 ...'` string, and the TSV header (all derived from one list) in `biopytools/common/blast.py` (FR-011)
-- [ ] T006 [P] Implement FASTA read/write/split helpers in `biopytools/common/fasta.py` (FR-011)
-- [ ] T007 [P] Implement `slugify`, atomic file replace, and path helpers in `biopytools/common/io.py` (FR-008)
+- [x] T005 Implement the BLAST output-format field list, the `-outfmt '6 ...'` string, and the TSV header (all derived from one list) in `biopytools/common/blast.py` (FR-011)
+- [x] T006 [P] Implement FASTA read/write/split helpers in `biopytools/common/fasta.py` (FR-011)
+- [x] T007 [P] Implement `slugify`, atomic file replace, and path helpers in `biopytools/common/io.py` (FR-008)
 
 **Checkpoint**: Shared utilities importable — user stories can begin.
 
@@ -58,17 +58,17 @@ counts; running the pipeline twice leaves the raw BLAST `.tsv` unchanged.
 
 ### Tests for User Story 1 ⚠️ (write first, ensure they FAIL before impl)
 
-- [ ] T008 [P] [US1] Curated fixture `tests/fixtures/spec_sens_known.tsv` + exact-count classification test in `tests/test_spec_sens.py` (covers exact match, superstring rejection, one-token skip — SC-001)
-- [ ] T009 [P] [US1] Tm-calculation test (value within tolerance, `same_tm` threshold) in `tests/test_primer_tm.py`
+- [x] T008 [P] [US1] Curated fixture `tests/fixtures/spec_sens_known.tsv` + exact-count classification test in `tests/test_spec_sens.py` (covers exact match, superstring rejection, one-token skip — SC-001)
+- [x] T009 [P] [US1] Tm-calculation test (value within tolerance, `same_tm` threshold) in `tests/test_primer_tm.py`
 
 ### Implementation for User Story 1
 
-- [ ] T010 [US1] `git mv qPCR/PrimerTm.py biopytools/qpcr/primer_tm.py`; keep applied fixes; update internal references
-- [ ] T011 [US1] `git mv qPCR/blastPrimers.py biopytools/qpcr/blast_primers.py`; extract BLAST call into `run_blast(...)`; import `common.blast` outfmt; use relative imports
-- [ ] T012 [US1] `git mv qPCR/putHeader.py biopytools/qpcr/put_header.py`; derive header from `common/blast.py` instead of a hardcoded string
-- [ ] T013 [US1] Create `biopytools/qpcr/__main__.py` with `argparse` subcommands `run` / `tm` / `specsens` per `contracts/cli-qpcr.md` (replaces the deleted `main.py`)
-- [ ] T014 [US1] Make `getTm`/`checkSpecSens`/`run_blast` cleanly importable (no top-level side effects) so tests can call them directly
-- [ ] T015 [US1] Run `pytest tests/test_spec_sens.py tests/test_primer_tm.py` and confirm green
+- [x] T010 [US1] `git mv qPCR/PrimerTm.py biopytools/qpcr/primer_tm.py`; keep applied fixes; update internal references
+- [x] T011 [US1] `git mv qPCR/blastPrimers.py biopytools/qpcr/blast_primers.py`; extract BLAST call into `run_blast(...)`; import `common.blast` outfmt; use relative imports
+- [x] T012 [US1] `git mv qPCR/putHeader.py biopytools/qpcr/put_header.py`; derive header from `common/blast.py` instead of a hardcoded string
+- [x] T013 [US1] Create `biopytools/qpcr/__main__.py` with `argparse` subcommands `run` / `tm` / `specsens` per `contracts/cli-qpcr.md` (replaces the deleted `main.py`)
+- [x] T014 [US1] Make `getTm`/`checkSpecSens`/`run_blast` cleanly importable (no top-level side effects) so tests can call them directly
+- [x] T015 [US1] Run `pytest tests/test_spec_sens.py tests/test_primer_tm.py` and confirm green
 
 **Checkpoint**: qPCR pipeline functional and verified inside the package (MVP).
 

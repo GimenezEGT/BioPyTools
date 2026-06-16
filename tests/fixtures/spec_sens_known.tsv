@@ -1,0 +1,7 @@
+qseqid	sscinames	qcovs	pident	evalue	staxids	qseq	sblastnames	salltitles	stitle	tm	same_tm
+p1	Homo sapiens	100	100.0	0.001	9606	ACGTACGTACGTACGTACGT	primates	Homo sapiens self	Homo sapiens self	60.0	True
+p1	Homo sapiens	100	98.0	0.01	9606	ACGTACGTACGTACGTACGT	primates	Homo sapiens variant	Homo sapiens variant	48.0	False
+p1	Pan troglodytes	95	95.0	0.02	9598	ACGTACGTACGTACGTACGT	primates	Pan troglodytes	Pan troglodytes	59.0	True
+p1	Pan troglodytes	95	93.0	0.05	9598	ACGTACGTACGTACGTACGT	primates	Pan troglodytes	Pan troglodytes	45.0	False
+p1	Homo sapiensaa	90	90.0	0.10	0	ACGTACGTACGTACGTACGT	primates	Homo sapiensaa superstring	Homo sapiensaa superstring	58.0	True
+p1	uncultured	80	88.0	0.20	0	ACGTACGTACGTACGTACGT	unclassified	uncultured organism	uncultured organism	57.0	True
