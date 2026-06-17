@@ -4,6 +4,7 @@ A small, installable toolkit of bioinformatics command-line utilities: BLAST
 wrappers, FASTA/GenBank parsers, and a qPCR primer specificity/sensitivity
 pipeline. All maintained tools are argument-driven and non-interactive, and
 share a single source of truth for the BLAST output format.
+I used Claude code to make it cleaner and readable.
 
 ## Install
 
